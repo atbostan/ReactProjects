@@ -3,47 +3,49 @@ import Header from "./components/header/header.component";
 import HomePage from "./pages/homepage/homepage.component";
 import ShopPage from "./pages/shop/shop.component";
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-out/sign-in-and-sign-out.component";
-import {auth} from './firebase/firebase.utils';
+import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import React from "react";
-import './App.css'
+import "./App.css";
 
-
-class App extends React.Component{
-  constructor(){
+class App extends React.Component {
+  constructor() {
     super();
 
     this.state = {
-      currentUser : null
-    }
+      currentUser: null,
+    };
   }
 
-  unsubscribeFromAuth =null;
+  unsubscribeFromAuth = null;
 
-  componentDidMount(){
+  componentDidMount() {
     //This method comes from firebase . Subscribe on the users state change.Persist on user session and track until the logout
-    this.unsubscribeFromAuth=auth.onAuthStateChanged(user=>{
-      this.setState({currentUser:user})
-      console.log(user);
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (user) => {
+      this.setState({ currentUser: user });
+      const userRef = await createUserProfileDocument(user);
+      this.setState(
+        { currentUser: { id: userRef.id, ...userRef.data() } },
+        () => console.log(this.state)
+      );
     });
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     this.unsubscribeFromAuth();
   }
 
-
-  render(){
-  return (
-    <div>
-      <Header currentUser={this.state.currentUser}/>
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/shop" component={ShopPage}/>
-        <Route path="/sign-in" component={SignInAndSignUpPage}/>
-      </Switch>
-    </div>
-  );
-}
+  render() {
+    return (
+      <div>
+        <Header currentUser={this.state.currentUser} />
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route path="/shop" component={ShopPage} />
+          <Route path="/sign-in" component={SignInAndSignUpPage} />
+        </Switch>
+      </div>
+    );
+  }
 }
 
 export default App;
