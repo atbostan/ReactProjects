@@ -12,6 +12,7 @@
   .menu-items {
     display: flex;
     padding-right: 1rem;
+    justify-content: flex-end;
     .menu-item {
       height: 40px;  
       width: 120px;
