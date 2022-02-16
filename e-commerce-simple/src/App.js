@@ -8,6 +8,10 @@ import React from "react";
 import "./App.css";
 import { connect } from "react-redux";
 import { setCurrentUser } from "./redux/user/user.actions";
+import { selectCurrentUser } from "./redux/user/user.selector";
+import { createStructuredSelector } from "reselect";
+import CheckoutPage from "./pages/checkout/checkout-page.component";
+
 class App extends React.Component {
   unsubscribeFromAuth = null;
   componentDidMount() {
@@ -37,6 +41,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/shop" component={ShopPage} />
+          <Route path="/checkout" component={CheckoutPage} />
           <Route
             exact
             path="/sign-in"
@@ -54,8 +59,16 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = ({ user }) => ({
-  currentUser: user.currentUser,
+/**We use createStructuredSelector for prevent doing same thing. Without this code be like below
+ * 
+ * const mapStateToProps = (state)=>({
+ *  currentUser: selectCurrentUser(state),
+ *  hidden : selectCartHidden(state)
+ * })
+ */
+
+const mapStateToProps = createStructuredSelector ({
+  currentUser: selectCurrentUser,
 });
 
 const mapDispatchToProps = (dispatch) => ({
