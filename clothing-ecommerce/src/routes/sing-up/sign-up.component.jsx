@@ -1,4 +1,3 @@
-import { async } from '@firebase/util';
 import React, { useState } from 'react'
 import { createAuthUserWithEmailAndPassword ,createUserDocumentFromAuth} from '../../utils/firebase.utils';
 import FormInput from '../../components/ui/form-input/form-input.component';
@@ -16,6 +15,7 @@ const SingUp = () => {
 const [formFields, setformFields] = useState(defaultFormFields);
 const {displayName,email,password,confirmPassword} = formFields;
 
+
 const resetFormFields = ()=>{
     setformFields(defaultFormFields);
 }
@@ -31,6 +31,8 @@ const handleSubmit = async (event)=>{
             await createUserDocumentFromAuth(user,{displayName})
             resetFormFields();
         }
+
+        
     }catch(error){
 
         console.log('user creation encoutered an error' , error)
