@@ -7,8 +7,8 @@ export const CartContext = createContext({
   addItemToCart: () => {},
   cartCount: 0,
   removeItemFromCart: () => {},
-  clearItemFromCart:()=>{},
-  cartTotal:0
+  clearItemFromCart: () => {},
+  cartTotal: 0,
 });
 
 const addOrUpdateCartItem = (existingCartItems, productToAdd) => {
@@ -45,62 +45,59 @@ const removeCartItem = (existingCartItems, cartItemToRemove) => {
         : cartItem
     );
   }
-}
+};
 
-const clearCartItem=(existingCartItems,cartItemsToClear)=>{
+const clearCartItem = (existingCartItems, cartItemsToClear) => {
   return existingCartItems.filter(
     (cartItem) => cartItem.id !== cartItemsToClear.id
   );
-}
-  export const CartProvider = ({ children }) => {
-    const [isCartOpen, setIsCartOpen] = useState(false);
-    const [existingCartItems, setExistingCartItems] = useState([]);
-    const [cartCount, setCartCount] = useState(0);
-    const [cartTotal, setCartTotal] = useState(0);
+};
 
-    //With useEffect , every time when cartItems changes call-back will triggered
-    useEffect(() => {
-      const newCartCount = existingCartItems.reduce(
-        (total, cartItem) => total + cartItem.quantity,
-        0
-      );
-      setCartCount(newCartCount);
-    }, [existingCartItems]);
+export const CartProvider = ({ children }) => {
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [existingCartItems, setExistingCartItems] = useState([]);
+  const [cartCount, setCartCount] = useState(0);
+  const [cartTotal, setCartTotal] = useState(0);
 
-
-    useEffect(() => {
-      const cartTotal = existingCartItems.reduce((total,cartItem)=>total + cartItem.quantity * cartItem.price,0)
-    
-      setCartTotal(cartTotal)
-    }, [existingCartItems])
-    
-
-    const addItemToCart = (productToAdd) => {
-      setExistingCartItems(
-        addOrUpdateCartItem(existingCartItems, productToAdd)
-      );
-    };
-
-    const removeItemFromCart = (cartItemToRemove) => {
-      setExistingCartItems(removeCartItem(existingCartItems, cartItemToRemove));
-    };
-
-
-    const clearItemFromCart=(cartItemToClear)=>{
-      setExistingCartItems(clearCartItem(existingCartItems,cartItemToClear))
-    }
-    const value = {
-      isCartOpen,
-      setIsCartOpen,
-      existingCartItems,
-      addItemToCart,
-      cartCount,
-      removeItemFromCart,
-      clearItemFromCart,
-      cartTotal
-    };
-
-    return (
-      <CartContext.Provider value={value}>{children}</CartContext.Provider>
+  //With useEffect , every time when cartItems changes call-back will triggered
+  useEffect(() => {
+    const newCartCount = existingCartItems.reduce(
+      (total, cartItem) => total + cartItem.quantity,
+      0
     );
+    setCartCount(newCartCount);
+  }, [existingCartItems]);
+
+  useEffect(() => {
+    const cartTotal = existingCartItems.reduce(
+      (total, cartItem) => total + cartItem.quantity * cartItem.price,
+      0
+    );
+
+    setCartTotal(cartTotal);
+  }, [existingCartItems]);
+
+  const addItemToCart = (productToAdd) => {
+    setExistingCartItems(addOrUpdateCartItem(existingCartItems, productToAdd));
   };
+
+  const removeItemFromCart = (cartItemToRemove) => {
+    setExistingCartItems(removeCartItem(existingCartItems, cartItemToRemove));
+  };
+
+  const clearItemFromCart = (cartItemToClear) => {
+    setExistingCartItems(clearCartItem(existingCartItems, cartItemToClear));
+  };
+  const value = {
+    isCartOpen,
+    setIsCartOpen,
+    existingCartItems,
+    addItemToCart,
+    cartCount,
+    removeItemFromCart,
+    clearItemFromCart,
+    cartTotal,
+  };
+
+  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
+};
