@@ -1,18 +1,28 @@
-import React, { useContext } from "react";
+import React, { Fragment, useContext } from "react";
 import "./shop.style.scss";
 import SHOP_DATA from "../../shop-data.json";
-import { ProductsContext } from "../../context/products.context";
 import ProductCard from "../../components/product-card/product-card.component";
+import { CategoriesContext } from "../../context/categories.context";
 
 const Shop = () => {
-  const { products } = useContext(ProductsContext);
-
+  const { categoriesMap } = useContext(CategoriesContext);
+  console.log("categoriesMap", categoriesMap);
   return (
-    <div className="products-container">
-      {SHOP_DATA.map((product) => (
-        <ProductCard key={product.id} product={product} />
+    <Fragment>
+      {/* Because of categoriesMap is an Object which includes key-value pair, so that we iterate it we use Object.keys and returns
+      keys of object as an array */}
+      {Object.keys(categoriesMap).map((title) => (
+        <Fragment key={title}>
+          <h2 style={{marginTop:"2rem"}}>{title.toUpperCase()}</h2>
+
+          <div className="products-container">
+            {categoriesMap[title].map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        </Fragment>
       ))}
-    </div>
+    </Fragment>
   );
 };
 

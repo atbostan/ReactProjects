@@ -6,10 +6,11 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  onAuthStateChanged,
+  onAuthStateChanged
+  
 } from "firebase/auth";
 
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import { getFirestore, doc, getDoc, setDoc ,collection,writeBatch, getDocs, query} from "firebase/firestore";
 const firebaseConfig = {
   apiKey: "AIzaSyAgHynM1lNgW3xPcdmZ75SgAd0B9mJSiDs",
   authDomain: "clothing-ecommer-web-app.firebaseapp.com",
@@ -90,3 +91,37 @@ export const signOutUser = async () => await signOut(auth);
 // Also this method keep track user sign in or sign out
 export const onAuthStateChangedListener = (callback) =>
   onAuthStateChanged(auth, callback);
+
+
+  //-----------------------PRODUCTS CRUD-------------------
+
+
+export const addCollectionAndDocuments =async (collectionKey,objectToAdd)=>{
+  const collectionReference = collection(db,collectionKey);
+
+  //BATCH is a job that we can roll back it 
+  const batch = writeBatch(db);
+
+  objectToAdd.forEach((object) => {
+    //docRef points to place that where the data should be
+    const docRef = doc(collectionReference,object.title.toLowerCase()) // doc(collection info includes db info , key value)
+    batch.set(docRef,object);
+  });
+
+  await batch.commit(); //close the batch
+} 
+
+export const getCategoriesAndDocuments = async () =>{
+  const collectionRef = collection(db,'categories');
+  const q = query(collectionRef);
+
+  const querySnapShots = await getDocs(q);
+  const categoryMap = querySnapShots.docs.reduce((acc,docSnapshot)=>{
+    const {title,items} = docSnapshot.data();
+    acc[title.toLowerCase()] = items;
+    return acc ;
+
+  },{})
+
+  return categoryMap;
+}
