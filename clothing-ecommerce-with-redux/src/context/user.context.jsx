@@ -19,6 +19,7 @@ import { createUserDocumentFromAuth, onAuthStateChangedListener } from "../utils
     switch (type) {
       case userReducerAction.SET_CURRENT_USER:
         return {
+        ...state,
           currentUser:payload
         }
         
