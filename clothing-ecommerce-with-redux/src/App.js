@@ -1,10 +1,31 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Routes, Route } from "react-router-dom";
+import { setCurrentUser } from "./redux/store/user/user.action";
 import Authentication from "./routes/authentication/authentication";
 import Checkout from "./routes/checkout/checkout.component";
 import Home from "./routes/home/home.component";
 import Navigation from "./routes/navigation/navigation.component";
 import Shop from "./routes/shop/shop.component";
+import { createUserDocumentFromAuth, onAuthStateChangedListener } from "./utils/firebase.utils";
+
 const App = () => {
+
+  const dispatch=useDispatch();
+
+  // By doing so this calls only when component mouth
+  useEffect(() => {
+    const unsubscribe = onAuthStateChangedListener((user)=>{
+      if(user){
+        createUserDocumentFromAuth(user);
+      }
+      dispatch(setCurrentUser(user)); // Only one dispatch
+   })
+    
+    return unsubscribe;  //Whenever unmount unsubscribe it
+   }, [])
+
+   
   return (
     <Routes>
       <Route path="/" element={<Navigation/>}>
