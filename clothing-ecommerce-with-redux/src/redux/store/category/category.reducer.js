@@ -8,7 +8,6 @@ const CATEGORY_INITIAL_STATE= {
 
 export const categoriesReducer = (state=CATEGORY_INITIAL_STATE,action={})=>{
     const {type,payload} = action;
-    debugger;
     switch (type) {
         case CATEGORY_ACTION_TYPES.SET_CATEGORIES:
             

@@ -12,7 +12,6 @@ const Shop = () => {
   useEffect(() => {
     // If we want to use async function inside of the useEffect() we should use this with create new async function
   const getCategories = async () => {
-    debugger;
     const categoriesArray = await getCategoriesAndDocuments();
     dispatch(setCategories(categoriesArray));
   };
