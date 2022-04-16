@@ -10,14 +10,6 @@ export const CategoriesContext = createContext({
 export const CategoriesProvider = ({ children }) => {
   const [categoriesMap, setCategoriesMap] = useState({});
 
-  useEffect(() => {
-      // If we want to use async function inside of the useEffect() we should use this with create new async function
-    const getCategories = async () => {
-      const categoryMap = await getCategoriesAndDocuments();
-      setCategoriesMap(categoryMap);
-    };
-    getCategories();;
-  }, []);
 
   const value = { categoriesMap };
   return (

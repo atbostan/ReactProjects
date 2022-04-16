@@ -1,10 +1,11 @@
-import React, {  Fragment, useContext } from "react";
-import "./categories-preview.style.scss";
-import { CategoriesContext } from "../../context/categories.context";
+import React, {  Fragment } from "react";
+import { useSelector } from "react-redux";
 import CategoryPreview from "../../components/category-preview/category-preview.component";
+import { selectCategories } from "../../redux/store/category/category.selector";
 
 const CategoriesPreview = () => {
-  const { categoriesMap } = useContext(CategoriesContext);
+  const categoriesMap=useSelector(selectCategories)
+  console.log(categoriesMap)
   return (
     <Fragment>
       {/* Because of categoriesMap is an Object which includes key-value pair, so that we iterate it we use Object.keys and returns
