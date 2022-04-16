@@ -1,8 +1,9 @@
 import { createContext,  useReducer } from "react";
+import { createAction } from "../utils/reducer/reducer.util";
 
 //-------------REDUX-------------
 const INITIAL_STATE = {
-  isCartOpen: true,
+  isCartOpen:false,
   existingCartItems: [],
   cartCount: 0,
   cartTotal: 0,
@@ -11,6 +12,7 @@ const INITIAL_STATE = {
 
 const cartReducerAction = {
   SET_CART_ITEMS: "SET_CART_ITEMS",
+  SET_IS_CART_OPEN:"SET_IS_CART_OPEN"
 };
 
 const cartReducer = (state, action) => {
@@ -21,7 +23,11 @@ const cartReducer = (state, action) => {
         ...state, 
         ...payload
       };
-
+    case cartReducerAction.SET_IS_CART_OPEN:
+      return { 
+        ...state, 
+        isCartOpen:payload
+      };
     default:
       throw new Error(`Unexpected action type in cart-reducer-${type}`);
   }
@@ -99,7 +105,7 @@ export const CartProvider = ({ children }) => {
       0
     );
 
-    dispatch({type:cartReducerAction.SET_CART_ITEMS,payload:{existingCartItems:newCartItems,cartTotal:cartTotal,cartCount:newCartCount}})
+    dispatch(createAction(cartReducerAction.SET_CART_ITEMS,{existingCartItems:newCartItems,cartTotal:cartTotal,cartCount:newCartCount}))
   }
 
   const addItemToCart = (productToAdd) => {
@@ -119,9 +125,14 @@ export const CartProvider = ({ children }) => {
 
 
   };
+
+  const setIsCartOpen= (bool)=>{
+    dispatch(createAction(cartReducerAction.SET_IS_CART_OPEN,bool))
+  }
+
   const value = {
-    isCartOpen:true,
-    setIsCartOpen:()=>{},
+    isCartOpen,
+    setIsCartOpen,
     existingCartItems,
     addItemToCart,
     cartCount,
