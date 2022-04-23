@@ -1,12 +1,13 @@
 import React, { useContext, useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import ProductCard from "../../components/product-card/product-card.component";
-import { CategoriesContext } from "../../context/categories.context";
+import { selectCategories } from "../../redux/store/category/category.selector";
 import "./category.style.scss";
 
 const Category = () => {
   const { category } = useParams(); // For use url params , returns an Object which we should destructre all we need one
-  const { categoriesMap } = useContext(CategoriesContext);
+  const { categoriesMap } = useSelector(selectCategories);
   const [products, setProducts] = useState(categoriesMap[category]);
 
   useEffect(() => {
