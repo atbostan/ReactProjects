@@ -3,7 +3,7 @@ import { Outlet, Link } from "react-router-dom";
 import "./navigation.style.scss";
 
 import { ReactComponent as NavLogo } from "../../assets/crown.svg";
-import { signOutUser } from "../../utils/firebase.utils";
+import { signOutUser } from "../../utils/firebase/firebase.utils";
 import CartIcon from "../../components/cart-icon/cart-icon.component";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
 import { selectIsCartOpenMemoized } from "../../redux/store/cart/cart.selector";
