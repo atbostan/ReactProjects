@@ -8,27 +8,30 @@ import jobs from "./constants/jobs";
 import { render } from "@testing-library/react";
 import Hero from "./components/hero/Hero.component";
 import Footer from "./components/footer/Footer.component";
+import Home from "./pages/home/home";
+import { Route, Routes } from "react-router-dom";
+import About from "./pages/about/About.component";
 
- class App extends React.Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {jobs:[]};
+    this.state = { jobs: [] };
   }
 
   componentDidMount() {
-    this.setState({jobs})
+    this.setState({ jobs });
   }
 
-  componentWillUnmount() {
-  }
+  componentWillUnmount() {}
   render() {
     return (
       <div className="App">
         <Navbar />
-        <Hero />
-        <Services />
-        <Experience jobs={this.state.jobs}  />
-        <Footer/>
+        <Routes>
+          <Route path="home" element={<Home jobs={this.state.jobs} />} />
+          <Route path="about" element={<About/>} />
+        </Routes>
+        <Footer />
       </div>
     );
   }

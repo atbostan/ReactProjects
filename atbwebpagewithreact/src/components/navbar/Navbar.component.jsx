@@ -1,17 +1,18 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import images from '../../constants/images'
 import "./Navbar.style.scss"
 const Navbar = () => {
   return (
     <nav className='navbar-container'>
         <div className='navbar-logo'>
-            <h1>ATB</h1>
+            <img src={images.logoNav} alt="" />
         </div>
         <div className='navbar-links'>
             <ul>
-                {['Home','About Me','My Works','Contact'].map((item)=>(
+                {['Home','About','Contact'].map((item)=>(
                     <li key={`link-${item}`}>
-                        <a href={`#${item}`}>{item}</a>
+                        <Link className='nav-links' to={item}>{item}</Link>
                     </li>
                 ))}
             </ul>

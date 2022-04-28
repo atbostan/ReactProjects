@@ -1,6 +1,10 @@
-import navlogo from "../assets/logo_size.jpg"
 import heroWelcomer from "../assets/herophoto.png"
+import about from "../assets/aboutphoto.png"
+import logoNav from "../assets/logo.png"
+import quoteComma from "../assets/comma.png"
 export default {
-    navlogo,
-    heroWelcomer
+    heroWelcomer,
+    about,
+    logoNav,
+    quoteComma
 }

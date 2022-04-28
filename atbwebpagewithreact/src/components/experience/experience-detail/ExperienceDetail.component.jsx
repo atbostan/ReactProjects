@@ -1,7 +1,8 @@
 import React from "react";
 import { FaAngleDoubleRight } from "react-icons/fa";
 const ExperienceDetail = ({ selectedJob }) => {
-  const { position, company, date, descriptions } = selectedJob;
+  let i = 0;
+  const { position, company, date, descriptions} = selectedJob;
   console.log(selectedJob);
   return (
     <div className="experience-detail-container">
@@ -11,7 +12,7 @@ const ExperienceDetail = ({ selectedJob }) => {
           <span className="experience-detail-tag">{company}</span>
           <span className="experience-detail-date">{date}</span>
           {descriptions.map((d) => (
-            <div className="experience-detail-desc">
+            <div  key={i++}className="experience-detail-desc">
               <FaAngleDoubleRight className="job-icon"></FaAngleDoubleRight>
               <p>{d}</p>
             </div>

@@ -14,10 +14,11 @@
 }
 
 .navbar-logo{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-   width: 33%;
+    display: block;
+    margin-top: 3rem;
+    img{
+        height: 150px;
+    }
 }
 
 .navbar-links{
@@ -30,7 +31,7 @@
         li{
             margin-right: 3rem;
 
-            a{
+            .nav-links{
                 color:rgba(128, 128, 128, 0.919);
                 font-weight: 900;
                 letter-spacing: 3px;
