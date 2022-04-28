@@ -92,6 +92,7 @@ a{
   border-radius: var(--radius);
   width: 25%;
   margin-top: 1rem;
+  text-align: center;
 }
 .btn:hover {
   color: var(--clr-navy-blue);

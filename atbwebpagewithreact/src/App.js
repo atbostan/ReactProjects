@@ -11,6 +11,7 @@ import Footer from "./components/footer/Footer.component";
 import Home from "./pages/home/home";
 import { Route, Routes } from "react-router-dom";
 import About from "./pages/about/About.component";
+import Contact from "./pages/contact/Contact.component";
 
 class App extends React.Component {
   constructor(props) {
@@ -28,8 +29,9 @@ class App extends React.Component {
       <div className="App">
         <Navbar />
         <Routes>
-          <Route path="home" element={<Home jobs={this.state.jobs} />} />
+          <Route index path="/" element={<Home jobs={this.state.jobs} />} />
           <Route path="about" element={<About/>} />
+          <Route path="contact" element={<Contact/>} />
         </Routes>
         <Footer />
       </div>

@@ -2,6 +2,7 @@ import React from "react";
 import images from "../../constants/images";
 import "./Hero.style.scss";
 import socialLinks from "../../constants/social-links"
+import { Link } from "react-router-dom";
 const Hero = () => {
   return (
     <section className="hero-container">
@@ -11,7 +12,7 @@ const Hero = () => {
           I'm Tarık
         </h1>
         <h4>Software Engineer And Full Time Learner</h4>
-        <button className="btn">CONTACT ME</button>
+        <Link className="btn" to="contact">CONTACT ME</Link>
         <div className="social-links">
               {socialLinks.map(link => {
                 return (

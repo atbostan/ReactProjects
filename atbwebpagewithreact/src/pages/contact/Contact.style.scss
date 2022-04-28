@@ -1,0 +1,68 @@
+.contact-container{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding-top: 4rem;
+    background-color: var(--clr-grey-light);
+    padding: var(--padding);
+    justify-content: center;
+    align-items: center;
+    
+    .contact-info{
+        text-align: justify;
+        letter-spacing: 2px;
+        color: var(--clr-grey);
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    .mail-logo{
+        border: 2px solid var(--clr-grey-middle);
+        padding: 1rem;
+        border-radius: 5px;
+        width: 25%;
+        text-align: center;
+        margin: 5px;
+
+     
+        a{
+            -webkit-transition: var(--transition);
+            transition: var(--transition);
+            color:var(--clr-grey);
+            span{
+                display: block;
+            }
+
+        }
+
+        a:hover{
+            color:var(--clr-soft-blue);
+            
+        }
+    }
+    .download-logo{
+        border: 2px solid var(--clr-grey-middle);
+        padding: 1rem;
+        border-radius: 5px;
+        width: 25%;
+        text-align: center;
+        margin: 5px;
+
+
+
+        a{
+            -webkit-transition: var(--transition);
+            transition: var(--transition);  
+            color:var(--clr-grey);
+            span{
+                display: block;
+            }
+        }
+        
+
+        a:hover{
+            color:var(--clr-soft-blue);
+            
+        }
+    }
+}
