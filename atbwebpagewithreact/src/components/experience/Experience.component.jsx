@@ -31,7 +31,7 @@ const Experience = ({ jobs }) => {
       <SectionTitle style={styles} title={"Experience"} />
       <div className="experience-container">
         <div className="job-buttons">
-          {jobs.map((job) => {
+          {jobs.map((job,index) => {
             const { company, position, date, descriptions } = job;
             return (
               <button
@@ -39,7 +39,7 @@ const Experience = ({ jobs }) => {
                 key={job.id}
                 className="job-button"
               >
-                <span>{company}</span>
+                {company}
               </button>
             );
           })}

@@ -1,7 +1,7 @@
 .contact-container{
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 100%;
     padding-top: 4rem;
     background-color: var(--clr-grey-light);
     padding: var(--padding);
@@ -20,10 +20,15 @@
         border: 2px solid var(--clr-grey-middle);
         padding: 1rem;
         border-radius: 5px;
-        width: 25%;
         text-align: center;
         margin: 5px;
 
+        .iomail{
+            font-size: 10rem;
+            @media screen and (max-width: 1290px) {
+                font-size: 5rem;
+            }
+        }
      
         a{
             -webkit-transition: var(--transition);
@@ -31,6 +36,7 @@
             color:var(--clr-grey);
             span{
                 display: block;
+          
             }
 
         }
@@ -39,16 +45,22 @@
             color:var(--clr-soft-blue);
             
         }
+
+      
     }
     .download-logo{
         border: 2px solid var(--clr-grey-middle);
         padding: 1rem;
         border-radius: 5px;
-        width: 25%;
         text-align: center;
         margin: 5px;
 
-
+        .riFileDownloadFill{
+            font-size: 10rem;
+            @media screen and (max-width: 1290px) {
+                font-size: 5rem;
+            }
+        }
 
         a{
             -webkit-transition: var(--transition);

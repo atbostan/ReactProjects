@@ -14,14 +14,14 @@ const Contact = () => {
           href="https://mail.google.com/mail/u/0/?fs=1&to=atbostan.developer@gmail.com&tf=cm"
           target="_blank"
         >
-          <IoMail size={"10rem"} />
+          <IoMail className="iomail" />
           <span><b>Mail Me!</b></span>
 
         </a>
       </div>
       <div className="download-logo">
         <a href={require("../../assets/cv.pdf")} download="Ahmet_Tarik_Bostan_CV">
-          <RiFileDownloadFill size={"10rem"}/>
+          <RiFileDownloadFill className="riFileDownloadFill"/>
           <span><b>CV</b></span>
         </a>
       </div>

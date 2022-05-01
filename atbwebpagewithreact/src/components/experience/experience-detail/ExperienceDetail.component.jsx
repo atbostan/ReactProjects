@@ -1,5 +1,6 @@
 import React from "react";
 import { FaAngleDoubleRight } from "react-icons/fa";
+import "./ExperienceDetail.style.scss"
 const ExperienceDetail = ({ selectedJob }) => {
   let i = 0;
   const { position, company, date, descriptions} = selectedJob;

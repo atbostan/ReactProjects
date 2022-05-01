@@ -1,0 +1,9 @@
+.experience-detail-container{
+    @media screen and (max-width: 900px) {
+        margin-top: 3rem;
+      }
+
+      p{
+        font-size: clamp( 0.3rem, 1rem, 5rem)  
+      }
+}

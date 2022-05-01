@@ -1,20 +1,20 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans|Roboto:400,700&display=swap");
 
-:root{
+:root {
   /*Fonts*/
-  --font-primary : "Roboto", sans-serif;
+  --font-primary: "Roboto", sans-serif;
   --font-secondary: "Open Sans", sans-serif;
 
   /*Colors*/
---clr-white:#fff;
---clr-white-2: hsl(189, 100%, 99%);
---clr-soft-blue: hsl(199, 80%, 74%);
---clr-soft-blue-2: hsla(199, 98%, 84%, 0.905);
---clr-navy-blue:#161F6D;
---clr-grey: hsl(209, 34%, 30%);
---clr-grey-dark: hsl(209, 61%, 16%);
---clr-grey-light: hsl(210, 36%, 96%);
---clr-grey-middle: hsl(212, 33%, 89%);
+  --clr-white: #fff;
+  --clr-white-2: hsl(189, 100%, 99%);
+  --clr-soft-blue: hsl(199, 80%, 74%);
+  --clr-soft-blue-2: hsla(199, 98%, 84%, 0.905);
+  --clr-navy-blue: #161f6d;
+  --clr-grey: hsl(209, 34%, 30%);
+  --clr-grey-dark: hsl(209, 61%, 16%);
+  --clr-grey-light: hsl(210, 36%, 96%);
+  --clr-grey-middle: hsl(212, 33%, 89%);
 
   /* dark shades of primary color*/
   --clr-primary-1: hsl(184, 91%, 17%);
@@ -32,47 +32,60 @@
 
   /*Util measures*/
   --radius: 0.25rem;
-  --padding:5rem;
-  --padding-sub:3rem;
+  --padding: 5rem;
+  --padding-sub: 3rem;
   --max-width: 1170px;
   --fixed-width: 700px;
-  
-
-
-
 }
 
 *,
 ::before,
-::after
-{
+::after {
   padding: 0;
-  margin:0;
+  margin: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
   font-family: var(--font-primary);
 }
 
-html,body{
+html,
+body {
   height: 100%;
   width: 100%;
-
 }
 
-ul{
+@media screen and (max-width: 900px) {
+  html,
+  body {
+    overflow-y:unset;
+    overflow-x: none;
+  }
+}
+
+ul {
   list-style: none;
 }
 
-a{
+a {
   text-decoration: none;
 }
-
+@media screen and (max-width: 1290px) {
+  .underline {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 5rem;
+    height: 0.25rem;
+    margin-bottom: 1.25rem;
+    background: var(--clr-navy-blue);
+  }
+}
 .underline {
   width: 5rem;
   height: 0.25rem;
   margin-bottom: 1.25rem;
   background: var(--clr-navy-blue);
-
 }
 
 .btn {
